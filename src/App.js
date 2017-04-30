@@ -20,18 +20,20 @@ class App extends Component {
   render() {
     let todos = this.state.todoList.map((item, index)=>{
       return (
-        <li>
+        <li className="item">
           <TodoItem todo={item}/>
         </li>
       )
     })
     return (
       <div className="App">
-        <h1>我的待办</h1>
+        <div id="header">
+          <h1>我的待办事项</h1>
+        </div>
         <div className="inputWrapper">
          <TodoInput content={this.state.newTodo}/>
         </div>
-        <ol>
+        <ol className="todoList">
           {todos}
         </ol>
       </div>
