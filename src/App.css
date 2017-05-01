@@ -7,29 +7,29 @@
   min-height: 20em;
   min-width: 32em;
   box-shadow: 0 0 1em hsla(0,0%,0%,0.5);
-  height: 90vh;
+  height: 50vh;
   width: 800px;
   position: relative;
 }
 
-#header {
+.App #header {
   background: #5E99EC;
   padding: 1em 0;
 }
 
-#header h1 {
+.App #header h1 {
   margin: 0.1em;
   text-align: center;
   color: #FFF;
 }
 
-.inputWrapper {
+.App .inputWrapper {
   padding: 1em 0;
   background: #B3CBEC;
   text-align: center;
 }
 
-.inputWrapper .content {
+.App .inputWrapper .content {
   border: none;
   outline: none;
   padding: 1em 2em;
@@ -41,18 +41,117 @@
   font-size: 16px;
 }
 
-.todoList {
-  padding: 1em;
+.App .todoList {
   background: #ECD5B3;
   position: absolute;
   top: 156px;
   left: 0;
   right: 0;
   bottom: 0;
-
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-.todoList .item {
+.App .todoList .item {
   padding: 1em 2em;
   border-bottom: 2px solid #ECE3D5;
 }
+
+.App .todoList .item:nth-child(odd) {
+  background: #D9D5EC;
+}
+
+.App .todoList .item .TodoItem {
+    display: flex;
+    align-items: center;
+}
+
+.App .todoList .item .TodoItem .title {
+   flex-grow: 1;
+   padding: 0 0.5em;
+   font-size: 20px;
+   transition: all 0.5s ease-in-out;
+}
+
+.App .todoList .item .TodoItem .checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.App .todoList .item .TodoItem .check {
+  background: transparent;
+  display: flex;
+  border: 2px solid #000;
+  box-shadow: 0 0 2px #000;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5em;
+  cursor: pointer;
+  position: relative;
+}
+
+.App .todoList .item .TodoItem .checkbox:checked+label .check {
+  background: #5ECD62;
+  border: 2px solid transparent;
+  animation: reveal .2s cubic-bezier(.4,0,.5,1);
+}
+
+.App .todoList .item .TodoItem .checkbox:checked+label .check::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 22%;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  transform: rotateZ(45deg);
+  transform-origin: 0 100%;
+  animation: checkboxcheck 125ms 50ms cubic-bezier(.1,0,.1,1) forwards;
+}
+
+
+@keyframes reveal {
+  0%, 100% {
+    transform: scale(1);
+  }
+  33% {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes checkboxcheck {
+    0% {
+        width: 0;
+        height: 0;
+        border-color: #fff;
+    }
+
+    33% {
+        width: .35em;
+        height: .75em;
+    }
+
+    100% {
+        width: .35em;
+        height: .75em;
+        border-color: #fff;
+    }
+}
+
+.App .todoList .item .TodoItem .checkbox:checked~.title {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.App .todoList .item .TodoItem .delete {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 1em 2em;
+  border-radius: 1em;
+  background: rgb(65, 170, 241);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  color: #FFF;
+}
+
+

@@ -3,11 +3,15 @@ import React, {Component} from 'react';
 export default class TodoItem extends Component {
     render(){
         return (
-            <div>
-                <input type="checkbox" checked={this.props.todo.status === 'completed'}
+            <div className="TodoItem">
+                <input type="checkbox" className="checkbox" id={this.props.id} 
+                checked={this.props.todo.status === 'completed'}
                 onChange={this.toggle.bind(this)}/>
-                {this.props.todo.title}
-                <button onClick={this.delete.bind(this)}>删除</button>
+                <label htmlFor={this.props.id}>
+                    <span className="check"></span>
+                </label>
+                <span className="title">{this.props.todo.title}</span>
+                <button className="delete" onClick={this.delete.bind(this)}>删除</button>
             </div>   
         )
     }

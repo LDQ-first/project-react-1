@@ -15,3 +15,37 @@ ul,ol,dl{
 a{
   color: inherit;
 }
+
+input::-webkit-input-placeholder,
+textare::-webkit-input-placeholder {
+  color: #FFF;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #FFF;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #FFF;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #FFF;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(98, 195, 231, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(43, 142, 231, 1);
+}
