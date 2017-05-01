@@ -18,10 +18,13 @@ class App extends Component {
     }
   }
   render() {
-    let todos = this.state.todoList.map((item, index)=>{
+    let todos = this.state.todoList
+    .filter((item) => !item.deleted)
+    .map((item, index)=>{
       return (
         <li className="item" key={index}>
-          <TodoItem todo={item} onToggle={this.toggle.bind(this)}/>
+          <TodoItem todo={item} onToggle={this.toggle.bind(this)}
+          onDelete={this.delete.bind(this)}/>
         </li>
       )
     })
@@ -33,7 +36,8 @@ class App extends Component {
         <div className="inputWrapper">
          <TodoInput content={this.state.newTodo} 
          onChange={this.changeTitle.bind(this)}
-         onSubmit={this.addTodo.bind(this)}/>
+         onSubmit={this.addTodo.bind(this)}
+         />
         </div>
         <ol className="todoList">
           {todos}
@@ -42,7 +46,6 @@ class App extends Component {
     )
   }
   addTodo(e){
-   // console.log('添加一个TODO了');
    this.state.todoList.push({
      id: idMaker(),
      title: e.target.value,
@@ -62,6 +65,10 @@ class App extends Component {
   }
   toggle(e, todo){
     todo.status = todo.status === 'completed' ? '' : 'completed';
+    this.setState(this.state);
+  }
+  delete(e, todo){
+    todo.deleted = true;
     this.setState(this.state);
   }
 }
