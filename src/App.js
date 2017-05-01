@@ -4,7 +4,10 @@ import './reset.css'
 import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
-import * as localStore from './localStore'
+import * as localStore from './localStore';
+
+
+
 
 class App extends Component {
   constructor(props){
