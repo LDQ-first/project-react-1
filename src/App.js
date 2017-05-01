@@ -4,7 +4,7 @@ import './reset.css'
 import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
-import * as localStore from './localStore';
+/*import * as localStore from './localStore';*/
 
 
 
@@ -14,7 +14,8 @@ class App extends Component {
     super(props)
     this.state = {
       newTodo: '',
-      todoList: localStore.load('todoList') || []
+      /*todoList: localStore.load('todoList') || []*/
+      todoList:  []
     }
   }
   render() {
@@ -46,7 +47,7 @@ class App extends Component {
     )
   }
   componentDidUpdate() {
-    localStore.save('todoList', this.state.todoList);
+   /* localStore.save('todoList', this.state.todoList);*/
   }
   addTodo(e){
    this.state.todoList.push({
