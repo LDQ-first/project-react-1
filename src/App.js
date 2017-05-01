@@ -31,7 +31,9 @@ class App extends Component {
           <h1>我的待办事项</h1>
         </div>
         <div className="inputWrapper">
-         <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
+         <TodoInput content={this.state.newTodo} 
+         onChange={this.changeTitle.bind(this)}
+         onSubmit={this.addTodo.bind(this)}/>
         </div>
         <ol className="todoList">
           {todos}
@@ -51,6 +53,12 @@ class App extends Component {
      newTodo: '',
      todoList: this.state.todoList
    })
+  }
+  changeTitle(e){
+    this.setState({
+      newTodo: e.target.value,
+      todoList: this.state.todoList
+    })
   }
 }
 
