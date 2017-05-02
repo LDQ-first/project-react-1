@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './UserDialog.css';
 import {signUp, signIn} from './leanCloud';
 import {copy} from './copy'
-
+import {error} from './errorCode'
 
 export default class UserDialog extends Component{
   constructor(props){
@@ -26,20 +26,11 @@ export default class UserDialog extends Component{
     let success = (user) => {
       this.props.onSignUp.call(null, user);
     }
-    let error = (error) => {
-      switch(error.code) {
-        case 202:
-           console.log('用户名已被占用');
-          break;
-        case 502:
-           console.log('服务器维护中');
-          break;
-        default:
-           console.log(error.code);
-           break;
-      }
-    }
-    signUp(username, password, success, error);
+    let errorFn = (errors) => {
+      error(errors);
+    };
+   
+    signUp(username, password, success, errorFn);
   }
   signIn(e){
     e.preventDefault();
@@ -47,23 +38,10 @@ export default class UserDialog extends Component{
     let success = (user) => {
       this.props.onSignIn.call(null, user);
     }
-    let error = (error) => {
-      switch(error.code) {
-        case 210:
-           console.log('用户名与密码不匹配');
-          break;
-        case 211:
-           console.log('找不到用户');
-          break;
-        case 502:
-           console.log('服务器维护中');
-          break;
-        default:
-           console.log(error.code);
-           break;
-      }
-    }
-    signIn(username, password, success, error);
+    let errorFn = (errors) => {
+      error(errors);
+    };
+    signIn(username, password, success, errorFn);
   }
   changeFormData(key, e) {
     let stateCopy = copy(this.state);
