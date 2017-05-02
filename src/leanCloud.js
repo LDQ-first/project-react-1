@@ -39,6 +39,10 @@ export function getCurrentUser() {
   }
 }
 
+export function signOut(){
+  AV.User.logOut();
+}
+
 
 function getUserFromAVUser(AVUser) {
   return {
