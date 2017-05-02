@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './UserDialog.css';
 import {signUp, signIn} from './leanCloud';
+import {copy} from './copy'
+
 
 export default class UserDialog extends Component{
   constructor(props){
@@ -29,8 +31,11 @@ export default class UserDialog extends Component{
         case 202:
            console.log('用户名已被占用');
           break;
+        case 502:
+           console.log('服务器维护中');
+          break;
         default:
-           console.log(error);
+           console.log(error.code);
            break;
       }
     }
@@ -47,15 +52,21 @@ export default class UserDialog extends Component{
         case 210:
            console.log('用户名与密码不匹配');
           break;
+        case 211:
+           console.log('找不到用户');
+          break;
+        case 502:
+           console.log('服务器维护中');
+          break;
         default:
-           console.log(error);
+           console.log(error.code);
            break;
       }
     }
     signIn(username, password, success, error);
   }
   changeFormData(key, e) {
-    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    let stateCopy = copy(this.state);
     stateCopy.formData[key] = e.target.value;
     this.setState(stateCopy);
   }
